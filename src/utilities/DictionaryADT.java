@@ -6,8 +6,8 @@ import exceptions.KeyNotFoundException;
 /**
 * DictionaryADT.java
 *
-* @author your name
-* @version major.minor revision number starting at 1.0
+* @author amrit reddy
+* @version 1.0
 * 
 * Interface Definition: This interface represents the contract for a Dictionary ADT (Abstract Data Type) 
 that stores key-value pairs with unique keys.
@@ -25,18 +25,19 @@ public interface DictionaryADT<K,V>
  * @postcondition dictionary contains the new key-value pair
  * @postcondition size of the dictionary increases by 1
  */
-    void insert(K key, V value) throws DuplicateKeyException;
+    boolean insert(K key, V value) throws DuplicateKeyException;
 
 /**
  * Removes the key-value pair associated with the specified key from the dictionary.
  * @param key the key to be removed
  * @return the value associated with the removed key, or null if the key does not exist
  * @throws NullPointerException if the key is null
+ * @throws KeyNotFoundException if the key does not exist in the dictionary
  * @precondition key != null
  * @postcondition dictionary no longer contains the key-value pair
  * @postcondition size of the dictionary decreases by 1 if the key was found
 */
-    V remove(K key);
+    V remove(K key) throws KeyNotFoundException;
 
 /**
  * Updates the value associated with the specified key in the dictionary.
@@ -48,7 +49,7 @@ public interface DictionaryADT<K,V>
  * @precondition key exists in the dictionary
  * @postcondition the value associated with the key is updated to the new value
 */
-    void update(K key, V value) throws KeyNotFoundException;
+    boolean update(K key, V value) throws KeyNotFoundException;
 
 /**
  * Returns the number of key-value pairs in the dictionary.
@@ -63,4 +64,14 @@ public interface DictionaryADT<K,V>
  * @postcondition returns true if size() == 0, false otherwise
  */
     boolean isEmpty();
+
+/**
+ * Checks if the dictionary contains a specific key and returns the value.
+ * @param key the key to check for existence
+ * @return the value associated with the key if it exists, null otherwise
+ * @throws NullPointerException if the key is null
+ * @precondition key != null
+ * @postcondition returns the value associated with the key if it exists, null otherwise
+ */
+    V lookup(K key) throws KeyNotFoundException;
 }
