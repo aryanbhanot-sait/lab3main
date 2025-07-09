@@ -1,12 +1,15 @@
 package utilities;
 
 import exceptions.DuplicateKeyException;
-import exceptions.KeyNotFoundException;
 
 /**
 * DictionaryADT.java
 *
-* @author amrit reddy
+* @author Amrit Reddy
+* @author Melbourne Marsden
+* @author Aryan Bhanot
+* @author Harsimarpreet Singh Sahota
+* @author Jasmeet Singh
 * @version 1.0
 * 
 * Interface Definition: This interface represents the contract for a Dictionary ADT (Abstract Data Type) 
@@ -32,24 +35,22 @@ public interface DictionaryADT<K,V>
  * @param key the key to be removed
  * @return the value associated with the removed key, or null if the key does not exist
  * @throws NullPointerException if the key is null
- * @throws KeyNotFoundException if the key does not exist in the dictionary
  * @precondition key != null
  * @postcondition dictionary no longer contains the key-value pair
  * @postcondition size of the dictionary decreases by 1 if the key was found
 */
-    V remove(K key) throws KeyNotFoundException;
+    V remove(K key);
 
 /**
  * Updates the value associated with the specified key in the dictionary.
  * @param key the key whose value is to be updated
  * @param value the new value to be associated with the key
- * @throws KeyNotFoundException if the key does not exist in the dictionary
+ * @return true if the key was found and updated, false otherwise
  * @throws NullPointerException if the key is null
  * @precondition key != null
- * @precondition key exists in the dictionary
- * @postcondition the value associated with the key is updated to the new value
+ * @postcondition the value associated with the key is updated to the new value if key exists
 */
-    boolean update(K key, V value) throws KeyNotFoundException;
+    boolean update(K key, V value);
 
 /**
  * Returns the number of key-value pairs in the dictionary.
@@ -73,5 +74,5 @@ public interface DictionaryADT<K,V>
  * @precondition key != null
  * @postcondition returns the value associated with the key if it exists, null otherwise
  */
-    V lookup(K key) throws KeyNotFoundException;
+    V lookup(K key);
 }

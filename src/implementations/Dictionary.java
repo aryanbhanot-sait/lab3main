@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import utilities.DictionaryADT;
 import exceptions.DuplicateKeyException;
-import exceptions.KeyNotFoundException;
 
 public class Dictionary<K,V> implements DictionaryADT<K,V>
 {
@@ -42,7 +41,7 @@ public class Dictionary<K,V> implements DictionaryADT<K,V>
 	}
 
     @Override
-    public V remove(K key) throws KeyNotFoundException {
+    public V remove(K key) {
         if (!this.keys.contains(key)) {
             return null;
         }
@@ -54,11 +53,11 @@ public class Dictionary<K,V> implements DictionaryADT<K,V>
     }
 
 	@Override
-	public boolean update(K key, V value) throws KeyNotFoundException
+	public boolean update(K key, V value)
 	{
 		int index = keys.indexOf(key);
 		if (index == -1) {
-			throw new KeyNotFoundException("Key not found: " + key);
+			return false;
 		}
 		values.set(index, value);
 		return true;
